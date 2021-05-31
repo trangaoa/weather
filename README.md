@@ -4,6 +4,8 @@ A new Flutter application.
 
 ## Getting Starter
 
+Video Demo: https://youtu.be/wW29E-YAmOk
+
 1. Giới thiệu
 App thời tiết sử dụng API của Open Weather (https://openweathermap.org/)
 và API bản đồ WEMAP, API do giảng viên cung cấp
