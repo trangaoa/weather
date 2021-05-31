@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wemapgl_example/single_time.dart';
-import 'weather_location.dart';
+import 'package:wemapgl_example/popUpMenu.details/single_day.dart';
+import 'package:wemapgl_example/popUpMenu.details/single_time.dart';
+import '../weather_location.dart';
 
 class SingleDetails extends StatelessWidget {
   final int index;
@@ -24,6 +26,7 @@ class SingleDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double resize = MediaQuery.of(context).devicePixelRatio/2.75;
     WeatherLocation weatherLocation = locationList[index];
 
     String bgimg = 'assets/bg/hanoi.jpg';
@@ -53,7 +56,7 @@ class SingleDetails extends StatelessWidget {
                 duration: Duration(milliseconds: 200),
                 child: SingleChildScrollView(
                   child: Container(
-                    height: 1170,
+                    height: (840 + 33 * weatherLocation.dayDetails.length) * resize,
                     padding: EdgeInsets.all(20),
                     child: Column(
                     children: [
@@ -62,12 +65,12 @@ class SingleDetails extends StatelessWidget {
                           children: [
                             Column(
                               children: [
-                                SizedBox(height: 40,),
+                                SizedBox(height: 25 * resize,),
                                 Center(
                                   child: Text(
                                     '${weatherLocation.city}',
                                     style: GoogleFonts.lato(
-                                      fontSize: 30,
+                                      fontSize: 24 * resize,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -77,11 +80,11 @@ class SingleDetails extends StatelessWidget {
                             ),
                             Column(
                               children: [
-                                SizedBox(height: 180,),
+                                SizedBox(height: 140 * resize,),
                                 Text(
                                   '${weatherLocation.temperature}',
                                   style: GoogleFonts.lato(
-                                    fontSize: 85,
+                                    fontSize: 70 * resize,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white,
                                   ),
@@ -91,13 +94,13 @@ class SingleDetails extends StatelessWidget {
                                   children: [
                                     SvgPicture.asset(
                                       '${weatherLocation.iconUrl}',
-                                      width: 34,
-                                      height: 34,
+                                      width: 27 * resize,
+                                      height: 27 * resize,
                                       color: Colors.white,
                                     ),
-                                    SizedBox(width: 10,),
+                                    SizedBox(width: 8 * resize,),
                                     Text('${weatherLocation.description}', style: GoogleFonts.lato(
-                                      fontSize: 25,
+                                      fontSize: 20 * resize,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.white,
                                     )),
@@ -117,14 +120,13 @@ class SingleDetails extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        height: 100,
+                        height: 80 * resize,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: weatherLocation.timeDetails.length,
                           itemBuilder: (context, i) => SingleTime(weatherLocation.timeDetails[i]),
                         ),
                       ),
-                      //SizedBox(height: 30,),
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 15),
                         decoration: BoxDecoration(
@@ -134,119 +136,15 @@ class SingleDetails extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                         decoration: myBoxDecoration(),
-                        //width: 400,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  '${weatherLocation.dt}',
-                                  style: GoogleFonts.lato(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(height: 5,),
-                                Text(
-                                  '${weatherLocation.dt_1d}',
-                                  style: GoogleFonts.lato(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(height: 5,),
-                                Text(
-                                  '${weatherLocation.dt_2d}',
-                                  style: GoogleFonts.lato(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            //SizedBox(width: 20,),
-                            Column(
-                              children: [
-                                Column(
-                                  //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text(
-                                      '${weatherLocation.description}',
-                                      style: GoogleFonts.lato(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5,),
-                                    Text(
-                                      '${weatherLocation.description_1d}',
-                                      style: GoogleFonts.lato(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5,),
-                                    Text(
-                                      '${weatherLocation.description_2d}',
-                                      style: GoogleFonts.lato(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            //SizedBox(width: 30,),
-                            Column(
-                              children: [
-                                Column(
-                                  //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text(
-                                      '${weatherLocation.temp_min}/${weatherLocation.temp_max}',
-                                      style: GoogleFonts.lato(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5,),
-                                    Text(
-                                      '${weatherLocation.temp_min_1d}/${weatherLocation.temp_max_1d}',
-                                      style: GoogleFonts.lato(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5,),
-                                    Text(
-                                      '${weatherLocation.temp_max_2d}/${weatherLocation.temp_max_2d}',
-                                      style: GoogleFonts.lato(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
+                        height: 33 * weatherLocation.dayDetails.length * resize,
+                        child: ListView.builder(
+                          padding: EdgeInsets.all(0),
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: weatherLocation.dayDetails.length,
+                          itemBuilder: (context, i) => SingleDay(weatherLocation.dayDetails[i]),
                         ),
                       ),
-                      //SizedBox(height: 30,),
                       Column(
                         children: [
                           Container(
@@ -258,21 +156,18 @@ class SingleDetails extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            //padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                             decoration: myBoxDecoration(),
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                // crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Column(
-                                  //mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Column(
                                       children: [
                                         Text(
                                           'Sunrise',
                                           style: GoogleFonts.lato(
-                                            fontSize: 14,
+                                            fontSize: 11 * resize,
                                             color: Colors.white70,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -280,19 +175,19 @@ class SingleDetails extends StatelessWidget {
                                         Text(
                                             '${weatherLocation.sunrise}',
                                             style: GoogleFonts.lato(
-                                              fontSize: 20,
+                                              fontSize: 16 * resize,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
                                             )),
                                       ],
                                     ),
-                                    SizedBox(height: 15,),
+                                    SizedBox(height: 12 * resize,),
                                     Column(
                                       children: [
                                         Text(
                                           'Wind',
                                           style: GoogleFonts.lato(
-                                            fontSize: 14,
+                                            fontSize: 11 * resize,
                                             color: Colors.white70,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -300,19 +195,19 @@ class SingleDetails extends StatelessWidget {
                                         Text(
                                             '${weatherLocation.wind.toStringAsFixed(2)} km/h',
                                             style: GoogleFonts.lato(
-                                              fontSize: 20,
+                                              fontSize: 16 * resize,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
                                             )),
                                       ],
                                     ),
-                                    SizedBox(height: 10,),
+                                    SizedBox(height: 8 * resize,),
                                     Column(
                                       children: [
                                         Text(
                                           'Feel like',
                                           style: GoogleFonts.lato(
-                                            fontSize: 14,
+                                            fontSize: 11 * resize,
                                             color: Colors.white70,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -320,19 +215,19 @@ class SingleDetails extends StatelessWidget {
                                         Text(
                                             '${(weatherLocation.feel_like)}',
                                             style: GoogleFonts.lato(
-                                              fontSize: 20,
+                                              fontSize: 16 * resize,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
                                             )),
                                       ],
                                     ),
-                                    SizedBox(height: 10,),
+                                    SizedBox(height: 8 * resize,),
                                     Column(
                                       children: [
                                         Text(
                                           'Dew Point',
                                           style: GoogleFonts.lato(
-                                            fontSize: 14,
+                                            fontSize: 11 * resize,
                                             color: Colors.white70,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -340,7 +235,7 @@ class SingleDetails extends StatelessWidget {
                                         Text(
                                             '${weatherLocation.dew_point}',
                                             style: GoogleFonts.lato(
-                                              fontSize: 20,
+                                              fontSize: 16 * resize,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
                                             )),
@@ -355,7 +250,7 @@ class SingleDetails extends StatelessWidget {
                                         Text(
                                           'Sunset',
                                           style: GoogleFonts.lato(
-                                            fontSize: 14,
+                                            fontSize: 11 * resize,
                                             color: Colors.white70,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -363,19 +258,19 @@ class SingleDetails extends StatelessWidget {
                                         Text(
                                             '${weatherLocation.sunset}',
                                             style: GoogleFonts.lato(
-                                              fontSize: 20,
+                                              fontSize: 16 * resize,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
                                             )),
                                       ],
                                     ),
-                                    SizedBox(height: 15,),
+                                    SizedBox(height: 12 * resize,),
                                     Column(
                                       children: [
                                         Text(
                                           'Humidity',
                                           style: GoogleFonts.lato(
-                                            fontSize: 14,
+                                            fontSize: 11 * resize,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white70,
                                           ),
@@ -383,19 +278,19 @@ class SingleDetails extends StatelessWidget {
                                         Text(
                                             '${weatherLocation.humidity.toString()} %',
                                             style: GoogleFonts.lato(
-                                              fontSize: 20,
+                                              fontSize: 16 * resize,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
                                             )),
                                       ],
                                     ),
-                                    SizedBox(height: 10,),
+                                    SizedBox(height: 8 * resize,),
                                     Column(
                                       children: [
                                         Text(
                                           'Pressure',
                                           style: GoogleFonts.lato(
-                                            fontSize: 14,
+                                            fontSize: 11 * resize,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white70,
                                           ),
@@ -403,19 +298,19 @@ class SingleDetails extends StatelessWidget {
                                         Text(
                                             '${weatherLocation.pressure.toString()} mbar',
                                             style: GoogleFonts.lato(
-                                              fontSize: 20,
+                                              fontSize: 16 * resize,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
                                             )),
                                       ],
                                     ),
-                                    SizedBox(height: 10,),
+                                    SizedBox(height: 8 * resize,),
                                     Column(
                                       children: [
                                         Text(
                                           'UV',
                                           style: GoogleFonts.lato(
-                                            fontSize: 14,
+                                            fontSize: 11 * resize,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white70,
                                           ),
@@ -423,7 +318,7 @@ class SingleDetails extends StatelessWidget {
                                         Text(
                                             '${weatherLocation.uvi.toString()}',
                                             style: GoogleFonts.lato(
-                                              fontSize: 20,
+                                              fontSize: 16 * resize,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
                                             )),

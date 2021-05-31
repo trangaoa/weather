@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wemapgl_example/time_details.dart';
+import 'package:wemapgl_example/popUpMenu.details/time_details.dart';
 
 // ignore: must_be_immutable
 class SingleTime extends StatelessWidget {
   //final int index;
-  TimeDetails timeDetails = TimeDetails();
+  TimeDetails timeDetails;
   SingleTime(this.timeDetails);
 
   BoxDecoration myBoxDecoration() {
@@ -27,18 +27,12 @@ class SingleTime extends StatelessWidget {
     return
       Container(
         width: 60,
-        //color: Colors.green,
         decoration: myBoxDecoration(),
-        //padding: EdgeInsets.all(5),
         margin: EdgeInsets.all(5),
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                     // crossAxisAlignment: CrossAxisAlignment.start,
