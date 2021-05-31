@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wemapgl_example/full_map.dart';
+import 'package:wemapgl_example/search/full_map.dart';
 import 'package:wemapgl_example/weather_app.dart';
-import 'weather_location.dart';
+import '../weather_location.dart';
 
 // ignore: must_be_immutable
 class WeatherApi extends StatelessWidget {
-  WeatherLocation weatherLocation = WeatherLocation();
+  WeatherLocation weatherLocation;
   WeatherApi(this.weatherLocation);
 
   @override
   Widget build(BuildContext context) {
     double resize = MediaQuery.of(context).devicePixelRatio/2.75;
 
-    weatherLocation.bgimg = 'assets/bgimg/default/brokenclouds.jpg';
+    weatherLocation.bgimg = 'assets/bgimg/default/brokenclouds.jpeg';
     var description = weatherLocation.description.toString().replaceAll(' ', '');
     if (weatherLocation.status == 'night'){
       weatherLocation.bgimg = 'assets/bgimg/${weatherLocation.theme}/${weatherLocation.weatherType}night.jpeg';
@@ -44,7 +44,7 @@ class WeatherApi extends StatelessWidget {
           ),
           actions: [
           Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 15 * resize, 0),
+            margin: EdgeInsets.only(right: 15 * resize),
             child: IconButton(
               onPressed: () {
                 var j = 0;
@@ -83,7 +83,8 @@ class WeatherApi extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(color: Colors.black38),
                 ),
-                Container(padding: EdgeInsets.all(20),
+                Container(
+                  padding: EdgeInsets.all(15 * resize),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,20 +97,20 @@ class WeatherApi extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 150 * resize,),
+                                SizedBox(height: 120 * resize,),
                                 Text(
                                   '${weatherLocation.city}',
                                   style: GoogleFonts.lato(
-                                    fontSize: 35 * resize,
+                                    fontSize: 35  * resize,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
                                 ),
-                                SizedBox(height: 5 * resize,),
+                                SizedBox(height: 5  * resize,),
                                 Text(
                                     '${weatherLocation.dateTime}',
                                     style: GoogleFonts.lato(
-                                      fontSize: 14 * resize,
+                                      fontSize: 14  * resize,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     )),
@@ -118,11 +119,11 @@ class WeatherApi extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 120 * resize,),
+                                SizedBox(height: 100  * resize,),
                                 Text(
                                   '${weatherLocation.temperature}',
                                   style: GoogleFonts.lato(
-                                    fontSize: 85 * resize,
+                                    fontSize: 80 * resize,
                                     fontWeight: FontWeight.w300,
                                     color: Colors.white,
                                   ),
@@ -151,7 +152,7 @@ class WeatherApi extends StatelessWidget {
                       Column(
                         children: [
                           Container(
-                            margin: EdgeInsets.symmetric(vertical: 40 * resize),
+                            margin: EdgeInsets.symmetric(vertical: 24 * resize),
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: Colors.white30,
@@ -159,7 +160,7 @@ class WeatherApi extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            padding: EdgeInsets.only(bottom: 15 * resize),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -174,16 +175,16 @@ class WeatherApi extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                        '${weatherLocation.wind}',
+                                        '${weatherLocation.windSpeed.toStringAsFixed(2)}',
                                         style: GoogleFonts.lato(
-                                          fontSize: 24 * resize,
+                                          fontSize: 24  * resize,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         )),
                                     Text(
-                                      'km/h',
+                                      '${weatherLocation.windUnit}',
                                       style: GoogleFonts.lato(
-                                        fontSize: 14 * resize,
+                                        fontSize: 14  * resize,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
@@ -191,13 +192,13 @@ class WeatherApi extends StatelessWidget {
                                     Stack(
                                       children: [
                                         Container(
-                                          height: 5 * resize,
-                                          width: 50 * resize,
+                                          height: 5  * resize,
+                                          width: 50  * resize,
                                           color: Colors.white38,
                                         ),
                                         Container(
-                                          height: 5 * resize,
-                                          width: 5 * resize,
+                                          height: 5  * resize,
+                                          width: 5  * resize,
                                           color: Colors.greenAccent,
                                         ),
                                       ],
@@ -207,24 +208,24 @@ class WeatherApi extends StatelessWidget {
                                 Column(
                                   children: [
                                     Text(
-                                      'Rain',
+                                      '${weatherLocation.weatherType}',
                                       style: GoogleFonts.lato(
-                                        fontSize: 14 * resize,
+                                        fontSize: 14  * resize,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
                                     ),
                                     Text(
-                                        '${weatherLocation.rain.toString()}',
+                                        '${weatherLocation.rain}',
                                         style: GoogleFonts.lato(
-                                          fontSize: 24 * resize,
+                                          fontSize: 24  * resize,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         )),
                                     Text(
                                       '%',
                                       style: GoogleFonts.lato(
-                                        fontSize: 14 * resize,
+                                        fontSize: 14  * resize,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
@@ -232,13 +233,13 @@ class WeatherApi extends StatelessWidget {
                                     Stack(
                                       children: [
                                         Container(
-                                          height: 5 * resize,
-                                          width: 50 * resize,
+                                          height: 5  * resize,
+                                          width: 50  * resize,
                                           color: Colors.white38,
                                         ),
                                         Container(
-                                          height: 5,
-                                          width: weatherLocation.rain.toDouble() * resize/2,
+                                          height: 5  * resize,
+                                          width: weatherLocation.rain.toDouble()/2 * resize,
                                           color: Colors.redAccent,
                                         ),
                                       ],
@@ -250,22 +251,22 @@ class WeatherApi extends StatelessWidget {
                                     Text(
                                       'Humidity',
                                       style: GoogleFonts.lato(
-                                        fontSize: 14 * resize,
+                                        fontSize: 14  * resize,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
                                     ),
                                     Text(
-                                        '${weatherLocation.humidity.toString()}',
+                                        weatherLocation.humidity.toString(),
                                         style: GoogleFonts.lato(
-                                          fontSize: 24 * resize,
+                                          fontSize: 24  * resize,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         )),
                                     Text(
                                       '%',
                                       style: GoogleFonts.lato(
-                                        fontSize: 14 * resize,
+                                        fontSize: 14  * resize,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
@@ -273,12 +274,12 @@ class WeatherApi extends StatelessWidget {
                                     Stack(
                                       children: [
                                         Container(
-                                          height: 5 * resize,
-                                          width: 50 * resize,
+                                          height: 5  * resize,
+                                          width: 50  * resize,
                                           color: Colors.white38,
                                         ),
                                         Container(
-                                          height: 5 * resize,
+                                          height: 5  * resize,
                                           width: weatherLocation.humidity.toDouble() * resize/2,
                                           color: Colors.redAccent,
                                         ),
@@ -293,7 +294,8 @@ class WeatherApi extends StatelessWidget {
                       ),
                     ],
                   ),
-                )]
+                ),
+              ]
           ),
         ),
     );

@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:wemapgl/wemapgl.dart';
-import 'package:wemapgl_example/weather_api.dart';
+import 'package:wemapgl_example/search/weather_api.dart';
 import 'package:wemapgl_example/weather_location.dart';
 import 'ePage.dart';
-import 'package:http/http.dart' as http;
 
 class FullMapPage extends ePage {
   FullMapPage() : super(const Icon(Icons.map), 'Full screen map');
@@ -26,7 +23,7 @@ class FullMap extends StatefulWidget {
 class FullMapState extends State<FullMap> {
   WeMapController mapController;
   int searchType = 1; //Type of search bar
-  String searchInfoPlace = "Tìm kiếm ở đây"; //Hint text for InfoBar
+  String searchInfoPlace = "Search here"; //Hint text for InfoBar
   String searchPlaceName;
   LatLng myLatLng = LatLng(21.038282, 105.782885);
   bool reverse = true;
@@ -42,26 +39,35 @@ class FullMapState extends State<FullMap> {
         children: <Widget>[
           WeMap(
             onMapClick: (point, latLng, _place) async {
-              WeatherLocation weatherLocation = WeatherLocation();
+              WeatherLocation _weatherLocation = WeatherLocation(
+                city: 'Saigon',
+                dateTime: '09:20 AM — Monday, 9 Nov 2020',
+                temperature: '17\u2103',
+                weatherType: 'Sunny',
+                iconUrl: 'assets/icon/overcastclouds.svg',
+                windSpeed: 5,
+                rain: 15,
+                humidity: 61,
+              );
               place = _place;
               var placeJSON = place.fullJSON;
 
               print(placeJSON);
 
-              setPlaceState(weatherLocation, placeJSON);
+              _weatherLocation.setPlaceState(placeJSON);
 
-              //Future<void> onMapClick()=>
-              Future.delayed(const Duration(seconds: 2), (){
+              Future.delayed(const Duration(seconds: 3), (){
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) =>
-                      WeatherApi(weatherLocation)),
+                      WeatherApi(_weatherLocation)),
                 );
+                print(_weatherLocation.city);
                 print('success');
               });
             },
             onPlaceCardClose: () {
-              // print("Place Card closed");
+              print("Place Card closed");
             },
             reverse: true,
             onMapCreated: _onMapCreated,

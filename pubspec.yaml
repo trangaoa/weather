@@ -40,24 +40,82 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/setting.jpeg
     - assets/bg/thaibinh.jpg
     - assets/bg/hanoi.jpg
     - assets/bg/london.jpg
     - assets/bg/sydney.jpg
     - assets/bg/hochiminhcity.jpg
-    - assets/bgimg/brokenclouds.jpeg
-    - assets/bgimg/Clearnight.jpeg
-    - assets/bgimg/clearsky.jpeg
-    - assets/bgimg/Clearsunrise.jpeg
-    - assets/bgimg/Cloudsnight.jpeg
-    - assets/bgimg/Cloudssunrise.jpeg
-    - assets/bgimg/heavyintensityrain.jpeg
-    - assets/bgimg/lightrain.jpeg
-    - assets/bgimg/moderaterain.jpeg
-    - assets/bgimg/overcastclouds.jpeg
-    - assets/bgimg/Rainnight.jpeg
-    - assets/bgimg/Rainsunrise.jpeg
-    - assets/bgimg/scatteredclouds.jpeg
+    - assets/bgimg/default/brokenclouds.jpeg
+    - assets/bgimg/default/Clearnight.jpeg
+    - assets/bgimg/default/clearsky.jpeg
+    - assets/bgimg/default/Clearsunrise.jpeg
+    - assets/bgimg/default/Cloudsnight.jpeg
+    - assets/bgimg/default/Cloudssunrise.jpeg
+    - assets/bgimg/default/fewclouds.jpeg
+    - assets/bgimg/default/heavyintensityrain.jpeg
+    - assets/bgimg/default/lightrain.jpeg
+    - assets/bgimg/default/moderaterain.jpeg
+    - assets/bgimg/default/overcastclouds.jpeg
+    - assets/bgimg/default/Rainnight.jpeg
+    - assets/bgimg/default/Rainsunrise.jpeg
+    - assets/bgimg/default/scatteredclouds.jpeg
+    - assets/bgimg/chinese/brokenclouds.jpeg
+    - assets/bgimg/chinese/Clearnight.jpeg
+    - assets/bgimg/chinese/clearsky.jpeg
+    - assets/bgimg/chinese/Clearsunrise.jpeg
+    - assets/bgimg/chinese/Cloudsnight.jpeg
+    - assets/bgimg/chinese/Cloudssunrise.jpeg
+    - assets/bgimg/chinese/fewclouds.jpeg
+    - assets/bgimg/chinese/heavyintensityrain.jpeg
+    - assets/bgimg/chinese/lightrain.jpeg
+    - assets/bgimg/chinese/moderaterain.jpeg
+    - assets/bgimg/chinese/overcastclouds.jpeg
+    - assets/bgimg/chinese/Rainnight.jpeg
+    - assets/bgimg/chinese/Rainsunrise.jpeg
+    - assets/bgimg/chinese/scatteredclouds.jpeg
+    - assets/bgimg/canvas/brokenclouds.jpeg
+    - assets/bgimg/canvas/Clearnight.jpeg
+    - assets/bgimg/canvas/clearsky.jpeg
+    - assets/bgimg/canvas/Clearsunrise.jpeg
+    - assets/bgimg/canvas/Cloudsnight.jpeg
+    - assets/bgimg/canvas/Cloudssunrise.jpeg
+    - assets/bgimg/canvas/fewclouds.jpeg
+    - assets/bgimg/canvas/heavyintensityrain.jpeg
+    - assets/bgimg/canvas/lightrain.jpeg
+    - assets/bgimg/canvas/moderaterain.jpeg
+    - assets/bgimg/canvas/overcastclouds.jpeg
+    - assets/bgimg/canvas/Rainnight.jpeg
+    - assets/bgimg/canvas/Rainsunrise.jpeg
+    - assets/bgimg/canvas/scatteredclouds.jpeg
+    - assets/bgimg/photo/brokenclouds.jpeg
+    - assets/bgimg/photo/Clearnight.jpeg
+    - assets/bgimg/photo/clearsky.jpeg
+    - assets/bgimg/photo/Clearsunrise.jpeg
+    - assets/bgimg/photo/Cloudsnight.jpeg
+    - assets/bgimg/photo/Cloudssunrise.jpeg
+    - assets/bgimg/photo/fewclouds.jpeg
+    - assets/bgimg/photo/heavyintensityrain.jpeg
+    - assets/bgimg/photo/lightrain.jpeg
+    - assets/bgimg/photo/moderaterain.jpeg
+    - assets/bgimg/photo/overcastclouds.jpeg
+    - assets/bgimg/photo/Rainnight.jpeg
+    - assets/bgimg/photo/Rainsunrise.jpeg
+    - assets/bgimg/photo/scatteredclouds.jpeg
+    - assets/bgimg/pixel/brokenclouds.jpeg
+    - assets/bgimg/pixel/Clearnight.jpeg
+    - assets/bgimg/pixel/clearsky.jpeg
+    - assets/bgimg/pixel/Clearsunrise.jpeg
+    - assets/bgimg/pixel/Cloudsnight.jpeg
+    - assets/bgimg/pixel/Cloudssunrise.jpeg
+    - assets/bgimg/pixel/fewclouds.jpeg
+    - assets/bgimg/pixel/heavyintensityrain.jpeg
+    - assets/bgimg/pixel/lightrain.jpeg
+    - assets/bgimg/pixel/moderaterain.jpeg
+    - assets/bgimg/pixel/overcastclouds.jpeg
+    - assets/bgimg/pixel/Rainnight.jpeg
+    - assets/bgimg/pixel/Rainsunrise.jpeg
+    - assets/bgimg/pixel/scatteredclouds.jpeg
     - assets/icon/brokenclouds.svg
     - assets/icon/Clearnight.svg
     - assets/icon/clearsky.svg
@@ -70,6 +128,11 @@ flutter:
     - assets/icon/Rainnight.svg
     - assets/icon/scatteredclouds.svg
     - assets/icon/sunrise.svg
+    - assets/theme/chinese.jpeg
+    - assets/theme/canvas.jpeg
+    - assets/theme/default.jpeg
+    - assets/theme/photo.jpeg
+    - assets/theme/pixel.jpeg
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wemapgl_example/popUpMenu.details/time_details.dart';
+import 'package:wemapgl_example/details/time_details.dart';
 
 // ignore: must_be_immutable
 class SingleTime extends StatelessWidget {

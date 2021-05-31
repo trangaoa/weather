@@ -32,7 +32,7 @@ class SingleTheme extends StatelessWidget {
                 margin: EdgeInsets.only(right: 10 * resize),
                 height: 150 * resize,
                 width: 200 * resize,
-                decoration: BoxDecoration(color: Colors.black45),
+                decoration: BoxDecoration(color: Colors.black26),
                 child: Column(
                   children: [
                     Expanded(

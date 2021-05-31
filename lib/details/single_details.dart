@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wemapgl_example/popUpMenu.details/single_day.dart';
-import 'package:wemapgl_example/popUpMenu.details/single_time.dart';
+import 'package:wemapgl_example/details/single_day.dart';
+import 'package:wemapgl_example/details/single_time.dart';
 import '../weather_location.dart';
 
 class SingleDetails extends StatelessWidget {
@@ -193,7 +193,7 @@ class SingleDetails extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                            '${weatherLocation.wind.toStringAsFixed(2)} km/h',
+                                            '${weatherLocation.wind}',
                                             style: GoogleFonts.lato(
                                               fontSize: 16 * resize,
                                               fontWeight: FontWeight.bold,
@@ -296,7 +296,7 @@ class SingleDetails extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                            '${weatherLocation.pressure.toString()} mbar',
+                                            '${weatherLocation.pressure}',
                                             style: GoogleFonts.lato(
                                               fontSize: 16 * resize,
                                               fontWeight: FontWeight.bold,

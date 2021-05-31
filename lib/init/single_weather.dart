@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'weather_location.dart';
+import '../weather_location.dart';
 
 // ignore: must_be_immutable
 class SingleWeather extends StatelessWidget {
@@ -14,7 +14,7 @@ class SingleWeather extends StatelessWidget {
 
     return
       Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(15 * resize),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +27,7 @@ class SingleWeather extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 150,),
+                      SizedBox(height: 120 * resize,),
                       Text(
                         '${weatherLocation.city}',
                         style: GoogleFonts.lato(
@@ -49,11 +49,11 @@ class SingleWeather extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 120  * resize,),
+                      SizedBox(height: 100  * resize,),
                       Text(
                         '${weatherLocation.temperature}',
                         style: GoogleFonts.lato(
-                          fontSize: 85  * resize,
+                          fontSize: 80 * resize,
                           fontWeight: FontWeight.w300,
                           color: Colors.white,
                         ),
@@ -62,13 +62,13 @@ class SingleWeather extends StatelessWidget {
                         children: [
                           SvgPicture.asset(
                             '${weatherLocation.iconUrl}',
-                            width: 34  * resize,
-                            height: 34  * resize,
+                            width: 34 * resize,
+                            height: 34 * resize,
                             color: Colors.white,
                           ),
-                          SizedBox(width: 10  * resize,),
+                          SizedBox(width: 10 * resize,),
                           Text('${weatherLocation.description}', style: GoogleFonts.lato(
-                            fontSize: 25  * resize,
+                            fontSize: 25 * resize,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
                           )),
@@ -82,7 +82,7 @@ class SingleWeather extends StatelessWidget {
             Column(
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 40),
+                  margin: EdgeInsets.symmetric(vertical: 24 * resize),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.white30,
@@ -90,7 +90,7 @@ class SingleWeather extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                  padding: EdgeInsets.only(bottom: 15 * resize),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -105,14 +105,14 @@ class SingleWeather extends StatelessWidget {
                             ),
                           ),
                           Text(
-                              '${weatherLocation.wind.toStringAsFixed(2)}',
+                              '${weatherLocation.windSpeed.toStringAsFixed(2)}',
                               style: GoogleFonts.lato(
                                 fontSize: 24  * resize,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               )),
                           Text(
-                            'km/h',
+                            '${weatherLocation.windUnit}',
                             style: GoogleFonts.lato(
                               fontSize: 14  * resize,
                               fontWeight: FontWeight.bold,
