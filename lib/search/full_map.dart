@@ -56,7 +56,7 @@ class FullMapState extends State<FullMap> {
 
               _weatherLocation.setPlaceState(placeJSON);
 
-              Future.delayed(const Duration(seconds: 3), (){
+              Future.delayed(const Duration(seconds: 2), (){
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) =>

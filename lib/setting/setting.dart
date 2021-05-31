@@ -43,7 +43,7 @@ class _SettingState extends State<Setting> {
               width: double.infinity,
             ),
             Container(
-              decoration: BoxDecoration(color: Colors.black54),
+              decoration: BoxDecoration(color: Colors.black87),
             ),
             Container(
                   //height: 700 * resize,
@@ -76,7 +76,7 @@ class _SettingState extends State<Setting> {
                               style: GoogleFonts.lato(
                                 fontSize: 24 * resize,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: Colors.white38,
                             ),
                           ),
                         ],
@@ -100,7 +100,7 @@ class _SettingState extends State<Setting> {
                                 style: GoogleFonts.lato(
                                   fontSize: 24 * resize,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                                  color: Colors.white38,
                                 ),
                               ),
                             ],
@@ -228,7 +228,7 @@ class _SettingState extends State<Setting> {
                           )
                         ],
                       ),
-                      SizedBox(height: 60 * resize,),
+                      SizedBox(height: 40 * resize,),
                       Column(
                         children: [
                           Row(
@@ -238,7 +238,7 @@ class _SettingState extends State<Setting> {
                                 style: GoogleFonts.lato(
                                   fontSize: 24 * resize,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                                  color: Colors.white38,
                                 ),
                               ),
                             ],
@@ -344,6 +344,7 @@ class _SettingState extends State<Setting> {
                           SizedBox(height: 80 * resize),
                         ],
                       ),
+                      SizedBox(height: 20 * resize,),
                     ],
                   ),
                 )

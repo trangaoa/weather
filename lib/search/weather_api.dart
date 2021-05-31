@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wemapgl_example/main.dart';
 import 'package:wemapgl_example/search/full_map.dart';
 import 'package:wemapgl_example/weather_app.dart';
 import '../weather_location.dart';
@@ -303,8 +304,6 @@ class WeatherApi extends StatelessWidget {
 
   void close(BuildContext context, var notify) async {
 
-  // Save the bottomsheet in a variable
-
   var bottomSheet = showModalBottomSheet(
       isDismissible: true,
       context: context,
@@ -323,36 +322,8 @@ class WeatherApi extends StatelessWidget {
   await bottomSheet.then((onValue) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => WeatherApp()),
+      MaterialPageRoute(builder: (context) => MyApp()),
     );
   },);
   }
-  // showModalBottomSheet(BuildContext context, var notify) {
-  //       Timer timer = Timer(Duration(milliseconds: 2000), (){
-  //         Navigator.of(context, rootNavigator: true).pop();
-  //       });
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => WeatherApp()),
-  //       );
-  //     //},
-  //   //);
-  //
-  //   // Create AlertDialog
-  //   AlertDialog alert = AlertDialog(
-  //     title: Text("Simple Alert"),
-  //     content: Text("$notify"),
-  //     // actions: [
-  //     //   okButton,
-  //     // ],
-  //   );
-  //
-  //   // show the dialog
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return alert;
-  //     }
-  //   );
-  // }
 }

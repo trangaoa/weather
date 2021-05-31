@@ -24,11 +24,13 @@ class SingleTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double resize = MediaQuery.of(context).devicePixelRatio/2.75;
+
     return
       Container(
-        width: 60,
+        width: 48 * resize,
         decoration: myBoxDecoration(),
-        margin: EdgeInsets.all(5),
+        margin: EdgeInsets.all(4 * resize),
         child: Column(
           children: [
             Expanded(
@@ -37,27 +39,27 @@ class SingleTime extends StatelessWidget {
                   Column(
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 5,),
+                      SizedBox(height: 4 * resize,),
                       Text(
                         '${timeDetails.temperature}',
                         style: GoogleFonts.lato(
-                          fontSize: 14,
+                          fontSize: 13 * resize,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(height: 4 * resize,),
                       SvgPicture.asset(
                         '${timeDetails.icon}',
-                        width: 30,
-                        height: 30,
+                        width: 22 * resize,
+                        height: 22 * resize,
                         color: timeDetails.color,
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(height: 4 * resize,),
                       Text(
                           '${timeDetails.time}',
                           style: GoogleFonts.lato(
-                            fontSize: 14,
+                            fontSize: 13 * resize,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           )),

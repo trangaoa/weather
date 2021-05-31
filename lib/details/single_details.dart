@@ -56,7 +56,7 @@ class SingleDetails extends StatelessWidget {
                 duration: Duration(milliseconds: 200),
                 child: SingleChildScrollView(
                   child: Container(
-                    height: (840 + 33 * weatherLocation.dayDetails.length) * resize,
+                    height: (860 + 33 * weatherLocation.dayDetails.length) * resize,
                     padding: EdgeInsets.all(20),
                     child: Column(
                     children: [
@@ -100,7 +100,7 @@ class SingleDetails extends StatelessWidget {
                                     ),
                                     SizedBox(width: 8 * resize,),
                                     Text('${weatherLocation.description}', style: GoogleFonts.lato(
-                                      fontSize: 20 * resize,
+                                      fontSize: 25 * resize,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.white,
                                     )),
