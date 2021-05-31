@@ -7,14 +7,15 @@ A new Flutter application.
 1. Giới thiệu
 App thời tiết sử dụng API của Open Weather (https://openweathermap.org/)
 và API bản đồ WEMAP, API do giảng viên cung cấp
+Tham khảo Code giao diện: https://www.youtube.com/watch?v=A9EWCl67hKw
 
 2. Giao diện chính
 
-![image](https://user-images.githubusercontent.com/57657974/119958805-955c7f00-bfcd-11eb-8af7-e26cdd7f7e08.png)
+![image](https://user-images.githubusercontent.com/57657974/120190202-787cb180-c242-11eb-8699-54cd833f7b9d.png)
 
 3. Giao diện thông tin
-
-![image](https://user-images.githubusercontent.com/57657974/119958984-c046d300-bfcd-11eb-80d2-ff16b22c5bd3.png)
+ 
+![image](https://user-images.githubusercontent.com/57657974/120190820-4fa8ec00-c243-11eb-825f-7dc3ed658d16.png)
 
 4. Dự báo 24 giờ tiếp
 
