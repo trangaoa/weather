@@ -11,15 +11,15 @@ Tham khảo Code giao diện: https://www.youtube.com/watch?v=A9EWCl67hKw
 
 2. Giao diện chính
 
-![image](https://user-images.githubusercontent.com/57657974/120190202-787cb180-c242-11eb-8699-54cd833f7b9d.png)
+![image](https://user-images.githubusercontent.com/57657974/120198521-60aa2b00-c24c-11eb-8de4-00bb19bbb45d.png)
 
 3. Giao diện thông tin
  
-![image](https://user-images.githubusercontent.com/57657974/120190820-4fa8ec00-c243-11eb-825f-7dc3ed658d16.png)
+![image](https://user-images.githubusercontent.com/57657974/120198465-4e2ff180-c24c-11eb-9082-4a662818851d.png)
 
 4. Dự báo 24 giờ tiếp
 
-![image](https://user-images.githubusercontent.com/57657974/119959358-23d10080-bfce-11eb-9b97-f16b0cfe7ad7.png)
+![image](https://user-images.githubusercontent.com/57657974/120198573-728bce00-c24c-11eb-8447-c514625fa96e.png)
 
 5. Dự báo 3 ngày tới (có thể phát triển thành 7 ngày và thêm phần cảnh báo)
 
@@ -39,7 +39,7 @@ WEMAP KEY API nhập vào đây, trong file main.dart
 
 8. Click vào một điểm trên bản đồ, sẽ hiện ra giao diện sau
 
-![image](https://user-images.githubusercontent.com/57657974/119960634-5c250e80-bfcf-11eb-927f-86ecf8c50ef0.png)
+![image](https://user-images.githubusercontent.com/57657974/120199005-f47bf700-c24c-11eb-8c87-36807d480384.png)
 
 9. Click nút Back quay lại giao diện WEMAP, nút Add để thêm vào danh sách địa điểm
 Thông báo thêm thành công: 
@@ -53,4 +53,32 @@ Thông báo đã tồn tại:
 Giao diện sau khi thêm thành công: 
 
 ![image](https://user-images.githubusercontent.com/57657974/119960974-baea8800-bfcf-11eb-8e3a-0ff129bf719b.png)
+
+10. Cài đặt 
+
+Giao diện cài đặt:
+
+![image](https://user-images.githubusercontent.com/57657974/120200598-b8499600-c24e-11eb-9137-ab2b04bb335b.png)
+
+Cài đặt giao diện:
+
+![image](https://user-images.githubusercontent.com/57657974/120200742-d911eb80-c24e-11eb-90db-6d4ff08360b2.png)
+![image](https://user-images.githubusercontent.com/57657974/120200787-e7600780-c24e-11eb-8a57-43fd7cc1527b.png)
+![image](https://user-images.githubusercontent.com/57657974/120200824-f646ba00-c24e-11eb-9182-eaf6404f0d6a.png)
+![image](https://user-images.githubusercontent.com/57657974/120200865-0199e580-c24f-11eb-876f-014fe4592a41.png)
+![image](https://user-images.githubusercontent.com/57657974/120200900-0b234d80-c24f-11eb-8f34-991254ff3c51.png)
+
+Giao diện thời tiết khi chọn theme canvas:
+
+![Uploading image.png…]()
+
+Cài đặt đơn vị:
+
+![image](https://user-images.githubusercontent.com/57657974/120200968-1d9d8700-c24f-11eb-9cd5-8ec7fd837936.png)
+
+Cài đặt dự báo (số ngày: từ 1 - 7 ngày tiếp theo, số giờ: 12 - 24 giờ tới):
+
+![image](https://user-images.githubusercontent.com/57657974/120201046-31e18400-c24f-11eb-9b6b-7be9d2bce5fa.png)
+
+
 
