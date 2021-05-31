@@ -74,6 +74,7 @@ Giao diện thời tiết khi chọn theme canvas, pixel, chinese, photo:
 
 ![image](https://user-images.githubusercontent.com/57657974/120215641-28ace300-c260-11eb-9079-9c7303981005.png)
 ![image](https://user-images.githubusercontent.com/57657974/120215583-1af75d80-c260-11eb-9102-e84ea567f1ef.png)
+
 ![image](https://user-images.githubusercontent.com/57657974/120215515-04e99d00-c260-11eb-806f-f5aa7f184e3a.png)
 ![image](https://user-images.githubusercontent.com/57657974/120215455-f307fa00-c25f-11eb-92c4-b52f80f882f7.png)
 
