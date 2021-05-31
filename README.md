@@ -70,7 +70,7 @@ Cài đặt giao diện:
 
 Giao diện thời tiết khi chọn theme canvas:
 
-![Uploading image.png…]()
+![image](https://user-images.githubusercontent.com/57657974/120201291-7a993d00-c24f-11eb-9d92-e2526ca04dfb.png)
 
 Cài đặt đơn vị:
 
