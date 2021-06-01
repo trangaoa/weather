@@ -4,26 +4,30 @@ A new Flutter application.
 
 ## Getting Starter
 
-Video Demo: https://youtu.be/wW29E-YAmOk
-
 1. Giới thiệu
 App thời tiết sử dụng API của Open Weather (https://openweathermap.org/)
 và API bản đồ WEMAP, API do giảng viên cung cấp
 Tham khảo Code giao diện: https://www.youtube.com/watch?v=A9EWCl67hKw
 
-2. Giao diện chính
+Video Demo: https://youtu.be/wW29E-YAmOk
+
+2. Giao diện ban đầu khi mở App:
+
+![image](https://user-images.githubusercontent.com/57657974/120225834-2f435680-c270-11eb-83da-537a8ed4e60c.png)
+
+3. Giao diện chính
 
 ![image](https://user-images.githubusercontent.com/57657974/120214737-15e5de80-c25f-11eb-8a80-2407c74b6b19.png)
 
-3. Giao diện thông tin
+4. Giao diện thông tin thời tiết đối với mỗi địa điểm
  
 ![image](https://user-images.githubusercontent.com/57657974/120198465-4e2ff180-c24c-11eb-9082-4a662818851d.png)
 
-4. Dự báo 24 giờ tiếp
+4. Dự báo 24 giờ tiếp (Mặc định, có thể thay đổi số lượng từ 10-24)
 
 ![image](https://user-images.githubusercontent.com/57657974/120198573-728bce00-c24c-11eb-8447-c514625fa96e.png)
 
-5. Dự báo 3 ngày tới (có thể phát triển thành 7 ngày và thêm phần cảnh báo)
+5. Dự báo 3 ngày tới (Mặc định, có thể thay đổi số lượng từ 1-7)
 
 ![image](https://user-images.githubusercontent.com/57657974/119959444-33e8e000-bfce-11eb-9b4e-9a6210559e60.png)
 
@@ -48,7 +52,7 @@ Thông báo thêm thành công:
 
 ![image](https://user-images.githubusercontent.com/57657974/119960891-a4443100-bfcf-11eb-81c7-3e32951fe9e0.png)
 
-Thông báo đã tồn tại: 
+Thông báo địa điểm đã tồn tại: 
 
 ![image](https://user-images.githubusercontent.com/57657974/119961384-2f252b80-bfd0-11eb-8009-817e35b04409.png)
 
@@ -82,7 +86,7 @@ Cài đặt đơn vị:
 
 ![image](https://user-images.githubusercontent.com/57657974/120200968-1d9d8700-c24f-11eb-9cd5-8ec7fd837936.png)
 
-Cài đặt dự báo (số ngày: từ 1 - 7 ngày tiếp theo, số giờ: 12 - 24 giờ tới):
+Cài đặt dự báo (số ngày: từ 1 - 7 ngày tiếp theo, số giờ: 10 - 24 giờ tới):
 
 ![image](https://user-images.githubusercontent.com/57657974/120201046-31e18400-c24f-11eb-9b6b-7be9d2bce5fa.png)
 
