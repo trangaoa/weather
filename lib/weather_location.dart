@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:wemapgl_example/details/time_details.dart';
-
 import 'details/day_details.dart';
 
 class WeatherLocation {
@@ -56,7 +55,10 @@ class WeatherLocation {
 
     var searchResult = await http.get(searchApiUrl);
 
-    setWeatherState(searchResult);
+    this.setWeatherState(searchResult);
+    formatWindSpeed(locationList[1].windUnit);
+    formatPressure(locationList[1].pressureUnit);
+    formatTemp(locationList[1].tempUnit);
   }
 
   void setWeatherState(var searchResult){
@@ -95,10 +97,6 @@ class WeatherLocation {
     this.description = weather[0]['description'];
     this.iconUrl = 'assets/icon/${this.description.toString().replaceAll(' ', '')}.svg';
     this.windSpeed = wind['speed'] * 3.6;
-    formatWindSpeed(this.windUnit);
-
-    formatPressure(this.pressureUnit);
-    formatTemp(this.tempUnit);
 
     if (this.weatherType == 'Rain') {
       var rain = result['rain'];
@@ -234,14 +232,75 @@ class WeatherLocation {
   }
 
   void formatPressure(String unit){
+    if (unit == 'mbar'){
+      if (this.pressureUnit == 'Pa'){
+        this.press = this.press / 100;
+        print('Chang pressure unit from Pa to mbar');
+      }
+    } else {
+      if (this.pressureUnit == 'mbar'){
+        this.press = this.press * 100;
+        print('Chang temperature unit from mbar to Pa');
+      }
+    }
+    this.pressureUnit = unit;
     this.pressure = this.press.toStringAsFixed(0) + ' ' + unit;
   }
 
   void formatWindSpeed(String unit){
+    if (unit == 'm/s'){
+      if (this.windUnit == 'km/h'){
+        this.windSpeed /= 3.6;
+        print('Chang wind speed unit from km/h to m/s');
+      }
+    } else {
+      if (this.windUnit == 'm/s'){
+        this.windSpeed *= 3.6;
+        print('Chang wind speed unit from m/s to km/h');
+      }
+    }
+    this.windUnit = unit;
     this.wind = this.windSpeed.toStringAsFixed(2) + ' ' + unit;
   }
 
   void formatTemp(String unit){
+    if (unit == '\u2103'){
+      if (this.tempUnit == '\u2109'){
+        this.temp = (this.temp - 32) * 5/9;
+        this.feel = (this.feel - 32) * 5/9;
+        this.min = (this.min - 32) * 5/9;
+        this.max = (this.max - 32) * 5/9;
+
+        for (int i = 0; i < this.timeDetails.length; i++){
+          this.timeDetails[i].timeTemp = (this.timeDetails[i].timeTemp - 32) * 5/9;
+        }
+
+        for (int i = 0; i < this.dayDetails.length; i++){
+          this.dayDetails[i].dayMin = (this.dayDetails[i].dayMin - 32) * 5/9;
+          this.dayDetails[i].dayMax = (this.dayDetails[i].dayMax - 32) * 5/9;
+        }
+        print('Chang temperature unit from \u2109 to \u2103');
+      }
+    } else {
+      if (this.tempUnit == '\u2103'){
+        this.temp = this.temp * 9/5 + 32;
+        this.feel = this.feel * 9/5 + 32;
+        this.min = this.min * 9/5 + 32;
+        this.max = this.max * 9/5 + 32;
+
+        for (int i = 0; i < this.timeDetails.length; i++){
+          this.timeDetails[i].timeTemp = this.timeDetails[i].timeTemp * 9/5 + 32;
+        }
+
+        for (int i = 0; i < this.dayDetails.length; i++){
+          this.dayDetails[i].dayMin = this.dayDetails[i].dayMin * 9/5 + 32;
+          this.dayDetails[i].dayMax = this.dayDetails[i].dayMax * 9/5 + 32;
+        }
+
+        print('Chang temperature unit from \u2103 to \u2109');
+      }
+    }
+
     this.temperature = this.temp.toStringAsFixed(1) + unit;
     this.feel_like = this.feel.toStringAsFixed(1) + unit;
     this.temp_min = this.min.toStringAsFixed(1) + unit;
@@ -255,6 +314,7 @@ class WeatherLocation {
       this.dayDetails[i].temp_min = this.dayDetails[i].dayMin.toStringAsFixed(1) + unit;
       this.dayDetails[i].temp_max = this.dayDetails[i].dayMax.toStringAsFixed(1) + unit;
     }
+    this.tempUnit = unit;
   }
 }
 

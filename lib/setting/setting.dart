@@ -357,7 +357,6 @@ class _SettingState extends State<Setting> {
   setOvercastDayState(int choice) {
     setState(() {
       overcastDays = choice;
-
       for (int i = 0; i < locationList.length; i++){
         WeatherLocation wl = locationList[i];
         wl.dayDetailLength = choice;
@@ -383,43 +382,6 @@ class _SettingState extends State<Setting> {
       defaultTemp = choice;
       for (int i = 0; i < locationList.length; i++){
         WeatherLocation wl = locationList[i];
-        if (choice == '\u2103'){
-          if (wl.tempUnit == '\u2109'){
-            wl.temp = (wl.temp - 32) * 5/9;
-            wl.feel = (wl.feel - 32) * 5/9;
-            wl.min = (wl.max - 32) * 5/9;
-            wl.max = (wl.max - 32) * 5/9;
-
-            for (int i = 0; i < wl.timeDetails.length; i++){
-              wl.timeDetails[i].timeTemp = (wl.timeDetails[i].timeTemp - 32) * 5/9;
-            }
-
-            for (int i = 0; i < wl.dayDetails.length; i++){
-              wl.dayDetails[i].dayMin = (wl.dayDetails[i].dayMin - 32) * 5/9;
-              wl.dayDetails[i].dayMax = (wl.dayDetails[i].dayMax - 32) * 5/9;
-            }
-            print('Chang temperature unit form \u2109 to \u2103');
-          }
-        } else {
-          if (wl.tempUnit == '\u2103'){
-            wl.temp = wl.temp * 9/5 + 32;
-            wl.feel = wl.feel * 9/5 + 32;
-            wl.min = wl.min * 9/5 + 32;
-            wl.max = wl.max * 9/5 + 32;
-
-            for (int i = 0; i < wl.timeDetails.length; i++){
-              wl.timeDetails[i].timeTemp = wl.timeDetails[i].timeTemp * 9/5 + 32;
-            }
-
-            for (int i = 0; i < wl.dayDetails.length; i++){
-              wl.dayDetails[i].dayMin = wl.dayDetails[i].dayMin * 9/5 + 32;
-              wl.dayDetails[i].dayMax = wl.dayDetails[i].dayMax * 9/5 + 32;
-            }
-
-            print('Chang temperature unit form \u2103 to \u2109');
-          }
-        }
-        wl.tempUnit = choice;
         wl.formatTemp(choice);
       }
     });
@@ -430,18 +392,6 @@ class _SettingState extends State<Setting> {
       defaultPress = choice;
       for (int i = 0; i < locationList.length; i++){
         WeatherLocation wl = locationList[i];
-        if (choice == 'mbar'){
-          if (wl.pressureUnit == 'Pa'){
-            wl.press = wl.press / 100;
-            print('Chang pressure unit from Pa to mbar');
-          }
-        } else {
-          if (wl.pressureUnit == 'mbar'){
-            wl.press = wl.press * 100;
-            print('Chang temperature unit from mbar to Pa');
-          }
-        }
-        wl.pressureUnit = choice;
         wl.formatPressure(choice);
       }
     });
@@ -452,18 +402,6 @@ class _SettingState extends State<Setting> {
       defaultSpeed = choice;
       for (int i = 0; i < locationList.length; i++){
         WeatherLocation wl = locationList[i];
-        if (choice == 'm/s'){
-          if (wl.windUnit == 'km/h'){
-            wl.windSpeed /= 3.6;
-            print('Chang wind speed unit from km/h to m/s');
-          }
-        } else {
-          if (wl.windUnit == 'm/s'){
-            wl.press *= 3.6;
-            print('Chang wind speed unit from m/s to km/h');
-          }
-        }
-        wl.windUnit = choice;
         wl.formatWindSpeed(choice);
       }
     });

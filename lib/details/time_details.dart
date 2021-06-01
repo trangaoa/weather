@@ -7,7 +7,6 @@ class TimeDetails {
   String temperature;
   Color color;
 
-  //TimeDetails();
   TimeDetails({
     @required this.time,
     @required this.icon,

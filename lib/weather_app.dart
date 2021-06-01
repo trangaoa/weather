@@ -24,7 +24,7 @@ class _WeatherAppState extends State<WeatherApp> {
   @override
   void initState() {
     super.initState();
-    _weatherLocation.fetchLocation();
+    //_weatherLocation.fetchLocation();
   }
 
 _onPageChanged(int index){

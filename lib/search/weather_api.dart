@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wemapgl_example/main.dart';
 import 'package:wemapgl_example/search/full_map.dart';
 import 'package:wemapgl_example/weather_app.dart';
 import '../weather_location.dart';
@@ -311,7 +310,10 @@ class WeatherApi extends StatelessWidget {
         return Container(
             height: 60,
             child: ListTile(
-              leading: Icon(Icons.notifications_active_outlined),
+              leading: Icon(
+                  Icons.notifications_on,
+                color: Colors.red,
+              ),
               title: Text('$notify'),
               onTap: (){}
         ),
@@ -322,7 +324,7 @@ class WeatherApi extends StatelessWidget {
   await bottomSheet.then((onValue) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => MyApp()),
+      MaterialPageRoute(builder: (context) => WeatherApp()),
     );
   },);
   }
