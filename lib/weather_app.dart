@@ -19,7 +19,6 @@ class WeatherApp extends StatefulWidget {
 class _WeatherAppState extends State<WeatherApp> {
   int _currentPage = 0;
   String bgimg;
-  WeatherLocation _weatherLocation = WeatherLocation();
 
   @override
   void initState() {

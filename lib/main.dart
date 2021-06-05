@@ -31,7 +31,6 @@ class _MyAppState extends State<MyApp> {
           colorBlendMode: BlendMode.softLight,
           color: Colors.black.withOpacity(1.0),
         ).image,
-        //backgroundColor: Colors.pinkAccent,
         styleTextUnderTheLoader: new TextStyle(),
         photoSize: 200.0,
         onClick: ()=>print("Flutter Egypt"),

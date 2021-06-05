@@ -360,7 +360,7 @@ class _SettingState extends State<Setting> {
       for (int i = 0; i < locationList.length; i++){
         WeatherLocation wl = locationList[i];
         wl.dayDetailLength = choice;
-        wl.fetchSearch();
+        wl.formatDayOvercast(choice);
       }
     });
   }
@@ -372,7 +372,7 @@ class _SettingState extends State<Setting> {
       for (int i = 0; i < locationList.length; i++){
         WeatherLocation wl = locationList[i];
         wl.timeDetailLength = choice;
-        wl.fetchSearch();
+        wl.formatTimeOvercast(choice);
       }
     });
   }

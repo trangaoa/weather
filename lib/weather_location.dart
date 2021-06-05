@@ -54,14 +54,16 @@ class WeatherLocation {
     print(searchApiUrl);
 
     var searchResult = await http.get(searchApiUrl);
+    this.tempUnit = locationList[1].tempUnit;
+    this.pressureUnit = locationList[1].pressureUnit;
+    this.windUnit = locationList[1].windUnit;
 
     this.setWeatherState(searchResult);
-    formatWindSpeed(locationList[1].windUnit);
-    formatPressure(locationList[1].pressureUnit);
-    formatTemp(locationList[1].tempUnit);
+    this.fetchSearch();
+    this.formatFahren();
   }
 
-  void setWeatherState(var searchResult){
+  void setWeatherState(var searchResult) {
     Map<String, dynamic> result = jsonDecode(searchResult.body);
     print('set Weather State: ${result.toString()}');
 
@@ -73,12 +75,12 @@ class WeatherLocation {
     var unixTimestampVN = result['dt'] - 25200 + result['timezone'];
     String formattedDay = formatDay(unixTimestampVN);
 
-    this.temp = main['temp']/10;
+    this.temp = main['temp'] / 10;
 
     var coord = result['coord'];
-    this.feel = main['feels_like']/10;
-    this.min = main['temp_min']/10;
-    this.max = main['temp_max']/10;
+    this.feel = main['feels_like'] / 10;
+    this.min = main['temp_min'] / 10;
+    this.max = main['temp_max'] / 10;
     var sys = result['sys'];
     var sunrise = sys['sunrise'] - 25200 + result['timezone'];
     var sunset = sys['sunset'] - 25200 + result['timezone'];
@@ -96,12 +98,12 @@ class WeatherLocation {
     this.weatherType = weather[0]['main'].toString();
     this.description = weather[0]['description'];
     this.iconUrl = 'assets/icon/${this.description.toString().replaceAll(' ', '')}.svg';
-    this.windSpeed = wind['speed'] * 3.6;
+    this.windSpeed = wind['speed'];
 
     if (this.weatherType == 'Rain') {
       var rain = result['rain'];
       this.rain = rain['1h'];
-    } else if (this.weatherType == 'Clouds'){
+    } else if (this.weatherType == 'Clouds') {
       var clouds = result['clouds'];
       this.rain = clouds['all'];
     } else if (this.weatherType == 'Clear') {
@@ -109,6 +111,34 @@ class WeatherLocation {
     }
 
     this.humidity = main['humidity'];
+
+    if (this.pressureUnit == 'Pa') {
+      this.press = this.press * 100;
+    }
+    this.pressure = this.press.toStringAsFixed(0) + ' ' + this.pressureUnit;
+
+    if (this.windUnit == 'km/h') {
+      this.windSpeed *= 3.6;
+    }
+    this.wind = this.windSpeed.toStringAsFixed(2) + ' ' + this.windUnit;
+
+    if (this.tempUnit == '\u2109'){
+      formatFahren();
+    }
+
+    this.temperature = this.temp.toStringAsFixed(1) + this.tempUnit;
+    this.feel_like = this.feel.toStringAsFixed(1) + this.tempUnit;
+    this.temp_min = this.min.toStringAsFixed(1) + this.tempUnit;
+    this.temp_max = this.max.toStringAsFixed(1) + this.tempUnit;
+
+    for (int i = 0; i < this.timeDetails.length; i++){
+      this.timeDetails[i].temperature = (this.timeDetails[i].timeTemp).toStringAsFixed(1) + this.tempUnit;
+    }
+
+    for (int i = 0; i < this.dayDetails.length; i++){
+      this.dayDetails[i].temp_min = this.dayDetails[i].dayMin.toStringAsFixed(1) + this.tempUnit;
+      this.dayDetails[i].temp_max = this.dayDetails[i].dayMax.toStringAsFixed(1) + this.tempUnit;
+    }
   }
 
   void fetchLocation() async{
@@ -184,6 +214,10 @@ class WeatherLocation {
       var iconTime;
       Color color;
 
+      if (this.tempUnit == '\u2109'){
+        timeTemp = timeTemp * 9/5 + 32;
+      }
+
       if (dateTimeDt.hour > dateSunset.hour || dateTimeDt.hour < dateSunrise.hour){
         iconTime = 'assets/icon/${timeMain}night.svg';
         color = Colors.yellowAccent;
@@ -215,6 +249,11 @@ class WeatherLocation {
       var dayMin = dateTemp['min']/10;
       var dayMax = dateTemp['max']/10;
 
+      if (this.tempUnit == '\u2109'){
+        dayMin = dayMin * 9/5 + 32;
+        dayMax = dayMax * 9/5 + 32;
+      }
+
       DayDetails day = DayDetails(
           day: formatDate(dateDay + time),
           description: dateDescription,
@@ -229,6 +268,104 @@ class WeatherLocation {
 
     this.dew_point = resultCurrent['dew_point'];
     this.uvi = resultCurrent['uvi'];
+  }
+
+  void formatDayOvercast(days) async {
+    String lat = this.lat.toStringAsFixed(4);
+    String lon = this.lon.toStringAsFixed(4);
+    String searchApiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=minutely&appid=cf6752c51d18cdd4ebabe52da8d74aea";
+
+    print(searchApiUrl);
+
+    var searchResult = await http.get(searchApiUrl);
+
+    Map<String, dynamic> result = jsonDecode(searchResult.body);
+    List<dynamic> resultDaily = result['daily'];
+    var time = - 25200 + result['timezone_offset'];
+
+    this.dayDetails.clear();
+
+    for(int i = 0; i < days; i++){
+      List<dynamic> dateWeather = resultDaily[i]['weather'];
+      var dateDay = resultDaily[i]['dt'];
+      var dateTemp = resultDaily[i]['temp'];
+      var dateDescription = dateWeather[0]['description'];
+      var dayMin = dateTemp['min']/10;
+      var dayMax = dateTemp['max']/10;
+
+      if (this.tempUnit == '\u2109'){
+        dayMin = dayMin * 9/5 + 32;
+        dayMax = dayMax * 9/5 + 32;
+      }
+
+      var day = DayDetails(
+          day: formatDate(dateDay + time),
+          description: dateDescription,
+          dayMin: dayMin,
+          dayMax: dayMax,
+          temp_min: dayMin.toStringAsFixed(1) + '${this.tempUnit}',
+          temp_max: dayMax.toStringAsFixed(1) + '${this.tempUnit}'
+      );
+
+      this.dayDetails.add(day);
+    }
+  }
+
+  void formatTimeOvercast(times) async{
+    String lat = this.lat.toStringAsFixed(4);
+    String lon = this.lon.toStringAsFixed(4);
+    String searchApiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=minutely&appid=cf6752c51d18cdd4ebabe52da8d74aea";
+
+    var searchResult = await http.get(searchApiUrl);
+
+    Map<String, dynamic> result = jsonDecode(searchResult.body);
+
+    List<dynamic> resultHourly = result['hourly'];
+    var resultCurrent = result['current'];
+    var time = - 25200 + result['timezone_offset'];
+
+    var sunrise = resultCurrent['sunrise'] + time;
+    var sunset = resultCurrent['sunset'] + time;
+
+    var dateSunset = new DateTime.fromMillisecondsSinceEpoch(sunset*1000);
+    var dateSunrise = new DateTime.fromMillisecondsSinceEpoch(sunrise*1000);
+
+    this.timeDetails.clear();
+
+    for (int i = 0; i < times; i++) {
+      List<dynamic> timeWeather = resultHourly[i + 1]['weather'];
+      var timeDt = resultHourly[i + 1]['dt'] + time;
+      var dateTimeDt = new DateTime.fromMillisecondsSinceEpoch(timeDt*1000);
+      var timeDescription = timeWeather[0]['description'].toString().replaceAll(' ', '');
+      var timeMain = timeWeather[0]['main'].toString();
+      var timeTemp = resultHourly[i + 1]['temp']/10;
+      var iconTime;
+      Color color;
+
+      if (dateTimeDt.hour > dateSunset.hour || dateTimeDt.hour < dateSunrise.hour){
+        iconTime = 'assets/icon/${timeMain}night.svg';
+        color = Colors.yellowAccent;
+      } else if (dateTimeDt.hour == dateSunset.hour || dateTimeDt.hour == dateSunrise.hour) {
+        iconTime = 'assets/icon/sunrise.svg';
+        color = Colors.deepOrange;
+      } else {
+        iconTime = 'assets/icon/$timeDescription.svg';
+        color = Colors.cyanAccent;
+      }
+
+      if (this.tempUnit == '\u2109'){
+        timeTemp = timeTemp * 9/5 + 32;
+      }
+
+      var timer = TimeDetails(
+        time: formatTime(timeDt),
+        icon: iconTime,
+        timeTemp: timeTemp,
+        temperature: timeTemp.toStringAsFixed(1) + '${this.tempUnit}',
+        color: color,
+      );
+      this.timeDetails.add(timer);
+    }
   }
 
   void formatPressure(String unit){
@@ -263,6 +400,22 @@ class WeatherLocation {
     this.wind = this.windSpeed.toStringAsFixed(2) + ' ' + unit;
   }
 
+  void formatFahren(){
+    this.temp = this.temp * 9/5 + 32;
+    this.feel = this.feel * 9/5 + 32;
+    this.min = this.min * 9/5 + 32;
+    this.max = this.max * 9/5 + 32;
+
+    for (int i = 0; i < this.timeDetails.length; i++){
+      this.timeDetails[i].timeTemp = this.timeDetails[i].timeTemp * 9/5 + 32;
+    }
+
+    for (int i = 0; i < this.dayDetails.length; i++){
+      this.dayDetails[i].dayMin = this.dayDetails[i].dayMin * 9/5 + 32;
+      this.dayDetails[i].dayMax = this.dayDetails[i].dayMax * 9/5 + 32;
+    }
+  }
+
   void formatTemp(String unit){
     if (unit == '\u2103'){
       if (this.tempUnit == '\u2109'){
@@ -283,19 +436,7 @@ class WeatherLocation {
       }
     } else {
       if (this.tempUnit == '\u2103'){
-        this.temp = this.temp * 9/5 + 32;
-        this.feel = this.feel * 9/5 + 32;
-        this.min = this.min * 9/5 + 32;
-        this.max = this.max * 9/5 + 32;
-
-        for (int i = 0; i < this.timeDetails.length; i++){
-          this.timeDetails[i].timeTemp = this.timeDetails[i].timeTemp * 9/5 + 32;
-        }
-
-        for (int i = 0; i < this.dayDetails.length; i++){
-          this.dayDetails[i].dayMin = this.dayDetails[i].dayMin * 9/5 + 32;
-          this.dayDetails[i].dayMax = this.dayDetails[i].dayMax * 9/5 + 32;
-        }
+        this.formatFahren();
 
         print('Chang temperature unit from \u2103 to \u2109');
       }
