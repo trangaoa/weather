@@ -50,7 +50,7 @@ WEMAP KEY API nhập vào đây, trong file main.dart
 9. Click nút Back quay lại giao diện WEMAP, nút Add để thêm vào danh sách địa điểm
 Thông báo thêm thành công: 
 
-![image](https://user-images.githubusercontent.com/57657974/119960891-a4443100-bfcf-11eb-81c7-3e32951fe9e0.png)
+![image](https://user-images.githubusercontent.com/57657974/120896431-b6674480-c64b-11eb-9eeb-ee24194008fa.png)
 
 Thông báo địa điểm đã tồn tại: 
 
